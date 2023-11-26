@@ -7,9 +7,9 @@ module Users
     end
 
     def call
-      if @total >= 50000
+      if @total >= User::GOLD_TIER
         'gold'
-      elsif @total >= 10000
+      elsif @total >= User::SILVER_TIER
         'silver'
       else
         'bronze'

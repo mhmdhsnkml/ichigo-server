@@ -10,11 +10,11 @@ module Users
     def call
       amount = case @tier
       when 'gold'
-        50000 - @total
+        User::GOLD_TIER - @total
       when 'silver'
-        10000 - @total
+        User::SILVER_TIER - @total
       when 'bronze'
-        0 - @total
+        User::BRONZE_TIER - @total
       end
 
       amount <= 0 ? 0 : amount

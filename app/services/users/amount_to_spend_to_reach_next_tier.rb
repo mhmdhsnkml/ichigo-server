@@ -7,12 +7,12 @@ module Users
     end
 
     def call
-      if total >= 50000
+      if total >= User::GOLD_TIER
         0
-      elsif total >= 10000
-        50000 - total
+      elsif total >= User::SILVER_TIER
+        User::GOLD_TIER - total
       else
-        10000 - total
+        User::SILVER_TIER - total
       end
     end
   end

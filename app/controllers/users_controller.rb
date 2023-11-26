@@ -61,9 +61,9 @@ class UsersController < ApplicationController
     user = Users::FindBy.call({ id: params[:id] })
 
     if user
-      orders = Orders::WhereInYears.call(user.id, 2)
+      orders, meta_pagination = Orders::WhereInYears.call(user.id, 2, pagination_params[:offset], pagination_params[:limit], pagination_params[:is_count])
 
-      render json: orders
+      render json: { data: orders, pagination: meta_pagination }
     else
       render json: { error: 'User not found' }, status: 404
     end
